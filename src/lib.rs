@@ -24,7 +24,7 @@ fn callback(sm: SlackMessage) {
     let url = format!("https://hn.algolia.com/api/v1/search_by_date?tags=story&query={query}&numericFilters=created_at_i>{timestamp}");
 
     let mut writer = Vec::new();
-    let resp = request::get(url, &mut writer).unwrap();
+    let resp = request::get(url.clone(), &mut writer).unwrap();
 
     if resp.status_code().is_success() {
         let search: Search = serde_json::from_slice(&writer).unwrap();
@@ -48,7 +48,7 @@ fn callback(sm: SlackMessage) {
             })
             .collect::<String>();
 
-        let msg = format!("About {query}:\n{list}");
+        let msg = format!("{}\nAbout {query}:\n{list}", url);
         send_message_to_channel("ham-5b68442", "general", msg);
     }
 }
