@@ -10,7 +10,7 @@ use slack_flows::send_message_to_channel;
 pub fn run() {
     let keyword = std::env::var("KEYWORD").unwrap();
 
-    schedule_cron_job(String::from("50 * * * *"), String::from(keyword), callback);
+    schedule_cron_job(String::from("50 * * * *"), keyword, callback);
 }
 
 fn callback(keyword: Vec<u8>) {
@@ -21,7 +21,7 @@ fn callback(keyword: Vec<u8>) {
     let url = format!("https://hn.algolia.com/api/v1/search_by_date?tags=story&query={query}&numericFilters=created_at_i>{dura}");
 
     let mut writer = Vec::new();
-    let resp = request::get(url.clone(), &mut writer).unwrap();
+    let resp = request::get(url, &mut writer).unwrap();
 
     if resp.status_code().is_success() {
         let search: Search = serde_json::from_slice(&writer).unwrap();
@@ -38,7 +38,7 @@ fn callback(keyword: Vec<u8>) {
             })
             .collect::<String>();
 
-        let msg = format!("{}\nAbout {query}:\n{list}", url);
+        let msg = format!(":sparkles: {query} :sparkles:\n{list}");
         send_message_to_channel("ham-5b68442", "general", msg);
     }
 }
