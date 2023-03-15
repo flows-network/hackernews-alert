@@ -20,8 +20,8 @@ fn callback(sm: SlackMessage) {
     let query = sm.text;
 
     let now = SystemTime::now();
-    let timestamp = now.duration_since(UNIX_EPOCH).unwrap().as_secs();
-    let url = format!("https://hn.algolia.com/api/v1/search_by_date?tags=story&query={query}&numericFilters=created_at_i>{timestamp}");
+    let dura = now.duration_since(UNIX_EPOCH).unwrap().as_secs() - 3600;
+    let url = format!("https://hn.algolia.com/api/v1/search_by_date?tags=story&query={query}&numericFilters=created_at_i>{dura}");
 
     let mut writer = Vec::new();
     let resp = request::get(url.clone(), &mut writer).unwrap();
@@ -32,19 +32,12 @@ fn callback(sm: SlackMessage) {
         let hits = search.hits;
         let list = hits
             .iter()
-            .filter_map(|hit| {
-                let now = SystemTime::now();
-                let dura = now.duration_since(UNIX_EPOCH).unwrap().as_secs() - 3600;
+            .map(|hit| {
+                let title = &hit.title;
+                let url = &hit.url.clone().unwrap_or_default();
+                let author = &hit.author;
 
-                if hit.created_at_i > dura as i64 {
-                    let title = &hit.title;
-                    let url = &hit.url.clone().unwrap_or_default();
-                    let author = &hit.author;
-
-                    Some(format!("* *{title}*<source|{url}> by {author}\n"))
-                } else {
-                    None
-                }
+                format!("* *{title}*<source|{url}> by {author}\n")
             })
             .collect::<String>();
 
