@@ -4,20 +4,17 @@ use http_req::request;
 use schedule_flows::schedule_cron_job;
 use serde_derive::{Deserialize, Serialize};
 
-use slack_flows::{listen_to_channel, send_message_to_channel, SlackMessage};
+use slack_flows::send_message_to_channel;
 
 #[no_mangle]
 pub fn run() {
-    // let keyword = std::env::var("KEYWORD").unwrap();
+    let keyword = std::env::var("KEYWORD").unwrap();
 
-    // schedule_cron_job(String::from("30 * * * *"), String::from(keyword), callback);
-    listen_to_channel("ham-5b68442", "general", callback)
+    schedule_cron_job(String::from("50 * * * *"), String::from(keyword), callback);
 }
 
-// fn callback(keyword: Vec<u8>) {
-fn callback(sm: SlackMessage) {
-    // let query = String::from_utf8(keyword).unwrap();
-    let query = sm.text;
+fn callback(keyword: Vec<u8>) {
+    let query = String::from_utf8(keyword).unwrap();
 
     let now = SystemTime::now();
     let dura = now.duration_since(UNIX_EPOCH).unwrap().as_secs() - 3600;
@@ -37,7 +34,7 @@ fn callback(sm: SlackMessage) {
                 let url = &hit.url.clone().unwrap_or_default();
                 let author = &hit.author;
 
-                format!("* *{title}*<source|{url}> by {author}\n")
+                format!("- *{title}*\n<source|{url}> by {author}\n")
             })
             .collect::<String>();
 
@@ -58,5 +55,6 @@ pub struct Hit {
     pub title: String,
     pub url: Option<String>,
     pub author: String,
+    #[serde(rename = "created_at_i")]
     pub created_at_i: i64,
 }
