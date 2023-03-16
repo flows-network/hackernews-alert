@@ -34,7 +34,7 @@ fn callback(keyword: Vec<u8>) {
                 let url = &hit.url.clone().unwrap_or_default();
                 let author = &hit.author;
 
-                format!("- *{title}*\n<source|{url}> by {author}\n")
+                format!("- *{title}*\n<{url}|source> by {author}\n")
             })
             .collect::<String>();
 
