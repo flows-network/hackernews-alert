@@ -9,8 +9,10 @@ use slack_flows::send_message_to_channel;
 #[no_mangle]
 pub fn run() {
     let keyword = std::env::var("KEYWORD").unwrap();
+    _ = std::env::var("TEAM").unwrap();
+    _ = std::env::var("CHANNEL").unwrap();
 
-    schedule_cron_job(String::from("58 * * * *"), keyword, callback);
+    schedule_cron_job(String::from("50 * * * *"), keyword, callback);
 }
 
 fn callback(keyword: Vec<u8>) {
@@ -40,11 +42,11 @@ fn callback(keyword: Vec<u8>) {
 
                 let post = format!("https://news.ycombinator.com/item?id={object_id}");
                 let source = match url {
-                    Some(u) => format!("(<source|{u}>)"),
+                    Some(u) => format!("(<{u}|source>)"),
                     None => String::new(),
                 };
 
-                format!("- *{title}*\n<post|{post}>{source} by {author}\n")
+                format!("- *{title}*\n<{post}|post>{source} by {author}\n")
             })
             .collect::<String>();
 
@@ -64,7 +66,7 @@ pub struct Hit {
     pub title: String,
     pub url: Option<String>,
     #[serde(rename = "objectID")]
-    pub object_id: usize,
+    pub object_id: String,
     pub author: String,
     pub created_at_i: i64,
 }
