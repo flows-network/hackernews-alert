@@ -10,7 +10,7 @@ use slack_flows::send_message_to_channel;
 pub fn run() {
     let keyword = std::env::var("KEYWORD").unwrap();
 
-    schedule_cron_job(String::from("50 * * * *"), keyword, callback);
+    schedule_cron_job(String::from("58 * * * *"), keyword, callback);
 }
 
 fn callback(keyword: Vec<u8>) {
