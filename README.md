@@ -2,5 +2,6 @@
 
 ## Usage
 
-Set env `KEYWORD`, flow will send stories about `KEYWORD` to slack per hour.
+Set env `KEYWORD`, `TEAM`, `CHANNEL`
+Flow will send stories about `KEYWORD` to slack `CHANNEL` of `TEAM` per hour.
 
