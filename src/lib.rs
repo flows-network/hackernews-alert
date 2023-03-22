@@ -14,6 +14,9 @@ pub fn run() {
 }
 
 fn callback(keyword: Vec<u8>) {
+    let team = std::env::var("TEAM").unwrap();
+    let channel = std::env::var("CHANNEL").unwrap();
+
     let query = String::from_utf8(keyword).unwrap();
 
     let now = SystemTime::now();
@@ -31,30 +34,37 @@ fn callback(keyword: Vec<u8>) {
             .iter()
             .map(|hit| {
                 let title = &hit.title;
-                let url = &hit.url.clone().unwrap_or_default();
+                let url = &hit.url;
+                let object_id = &hit.object_id;
                 let author = &hit.author;
 
-                format!("- *{title}*\n<source|{url}> by {author}\n")
+                let post = format!("https://news.ycombinator.com/item?id={object_id}");
+                let source = match url {
+                    Some(u) => format!("(<source|{u}>)"),
+                    None => String::new(),
+                };
+
+                format!("- *{title}*\n<post|{post}>{source} by {author}\n")
             })
             .collect::<String>();
 
         let msg = format!(":sparkles: {query} :sparkles:\n{list}");
-        send_message_to_channel("ham-5b68442", "general", msg);
+        send_message_to_channel(&team, &channel, msg);
     }
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
 pub struct Search {
     pub hits: Vec<Hit>,
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
+#[serde(rename_all = "snake_case")]
 pub struct Hit {
     pub title: String,
     pub url: Option<String>,
+    #[serde(rename = "objectID")]
+    pub object_id: usize,
     pub author: String,
-    #[serde(rename = "created_at_i")]
     pub created_at_i: i64,
 }
