@@ -1,9 +1,7 @@
 # HackerNews Alert
 
-# A ChatGPT bot to respond to your GitHub Issues
 
 [Deploy this function on flows.network](#deploy-the-hackernews-alert-app), and you will reveice HackerNews post alerts per hour according to your interests. 
-
 
 
 ## Deploy the HackerNews Alert App
