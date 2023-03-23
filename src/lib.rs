@@ -51,7 +51,7 @@ fn callback(keyword: Vec<u8>) {
             .collect::<String>();
 
         let msg = format!(":sparkles: {query} :sparkles:\n{list}");
-        send_message_to_channel(&team, &channel, msg);
+        send_message_to_channel(&workspace, &channel, msg);
     }
 }
 
