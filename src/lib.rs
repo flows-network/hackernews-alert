@@ -14,33 +14,45 @@ pub fn run() {
 }
 
 fn callback(keyword: Vec<u8>) {
-    let query = String::from_utf8(keyword).unwrap();
+    let kw = String::from_utf8(keyword).unwrap();
 
     let now = SystemTime::now();
     let dura = now.duration_since(UNIX_EPOCH).unwrap().as_secs() - 3600;
-    let url = format!("https://hn.algolia.com/api/v1/search_by_date?tags=story&query={query}&numericFilters=created_at_i>{dura}");
 
-    let mut writer = Vec::new();
-    let resp = request::get(url, &mut writer).unwrap();
+    let kws = kw.split("||");
 
-    if resp.status_code().is_success() {
-        let search: Search = serde_json::from_slice(&writer).unwrap();
+    let mut lists = Vec::new();
+    for kw in kws {
+        let url = format!("https://hn.algolia.com/api/v1/search_by_date?tags=story&query={kw}&numericFilters=created_at_i>{dura}");
 
-        let hits = search.hits;
-        let list = hits
-            .iter()
-            .map(|hit| {
-                let title = &hit.title;
-                let url = &hit.url.clone().unwrap_or_default();
-                let author = &hit.author;
+        let mut writer = Vec::new();
+        let resp = request::get(url, &mut writer).unwrap();
 
-                format!("- *{title}*\n<{url}|source> by {author}\n")
-            })
-            .collect::<String>();
+        if resp.status_code().is_success() {
+            let search: Search = serde_json::from_slice(&writer).unwrap();
 
-        let msg = format!(":sparkles: {query} :sparkles:\n{list}");
-        send_message_to_channel("ham-5b68442", "general", msg);
+            let hits = search.hits;
+            let list = hits
+                .iter()
+                .map(|hit| {
+                    let title = &hit.title;
+                    let url = &hit.url.clone().unwrap_or_default();
+                    let author = &hit.author;
+
+                    format!("- *{title}*\n<{url}|source> by {author}\n")
+                })
+                .collect::<Vec<_>>();
+            lists.push(list);
+        }
     }
+
+    let mut lists = lists.into_iter().flatten().collect::<Vec<_>>();
+    lists.sort();
+    lists.dedup();
+    let list = lists.into_iter().collect::<String>();
+
+    let msg = format!(":sparkles: {kw} :sparkles:\n{list}");
+    send_message_to_channel("ham-5b68442", "general", msg);
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
