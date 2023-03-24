@@ -3,6 +3,7 @@
 
 [Deploy this function on flows.network](#deploy-the-hackernews-alert-app), and you will reveice HackerNews post alerts per hour according to your interests. 
 
+<img width="658" alt="image" src="https://user-images.githubusercontent.com/45785633/227419393-d7a438f1-51c9-42bc-bb9a-bac1cd3e5581.png">
 
 ## Deploy the HackerNews Alert App
 
@@ -19,8 +20,7 @@ Fork [this repo](https://github.com/flows-network/hackernews-alert/) and go to f
 3. Authenticate the [flows.network](https://flows.network/) to access the `hackernews-alert` repo you just forked. 
 ![image](https://user-images.githubusercontent.com/45785633/227176033-35a445d8-9e73-4d6d-a919-c68d64cc4075.png)
 
-4. Click on the Advanced text and you will see more settings. Fill in the required Environment Variables. In this example, we have three variables. One is `KEYWORD`: fill in the topic you want to listen to,like `ChatGPT`. If you want to listen to multipule keyowrds, you can use `||` between each keyword. 
-The other two variables: `WORKSPACE` and `CHANNEL`: fill in your own workspace and channel
+4. Click on the Advanced text and you will see more settings. Fill in the required Environment Variables. In this example, we have three variables. One is `KEYWORD`: fill in one topic you want to listen to, like `ChatGPT`. The other two variables: `WORKSPACE` and `CHANNEL`: fill in your own workspace and channel
 
 ![image](https://user-images.githubusercontent.com/45785633/227176580-b7e8d31d-b871-45b4-baee-312572615e8a.png)
 
