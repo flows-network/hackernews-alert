@@ -9,15 +9,15 @@ use slack_flows::send_message_to_channel;
 #[no_mangle]
 pub fn run() {
     let keyword = std::env::var("KEYWORD").unwrap();
-    _ = std::env::var("WORKSPACE").unwrap();
-    _ = std::env::var("CHANNEL").unwrap();
+    _ = std::env::var("slack_workspace").unwrap();
+    _ = std::env::var("slack_channel").unwrap();
 
     schedule_cron_job(String::from("50 * * * *"), keyword, callback);
 }
 
 fn callback(keyword: Vec<u8>) {
-    let workspace = std::env::var("WORKSPACE").unwrap();
-    let channel = std::env::var("CHANNEL").unwrap();
+    let workspace = std::env::var("slack_workspace").unwrap();
+    let channel = std::env::var("slack_channel").unwrap();
 
     let query = String::from_utf8(keyword).unwrap();
 
@@ -46,7 +46,7 @@ fn callback(keyword: Vec<u8>) {
                     None => String::new(),
                 };
 
-                format!("- *{title}*\n<{post}|post>{source} by {author}\n")
+                format!("- *{title}*\n<{post} | post>{source} by {author}\n")
             })
             .collect::<String>();
 
