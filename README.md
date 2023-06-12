@@ -11,7 +11,7 @@
   </a>
 </p>
 
-[Deploy this function on flows.network](#deploy-the-hackernews-alert-app), and you will reveice HackerNews post alerts each hour based on a keyword you set. 
+[Deploy this function on flows.network](#deploy-the-hackernews-alert-app), and you will reveice HackerNews post alerts each hour based on a keyword you set. The below screenshot shows alert messages of the keyword "GPT".
 
 <img width="658" alt="image" src="https://user-images.githubusercontent.com/45785633/227419393-d7a438f1-51c9-42bc-bb9a-bac1cd3e5581.png">
 
