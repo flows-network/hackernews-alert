@@ -35,6 +35,8 @@ Click on the **Create and Deploy** button.
 
 ### 2 Configure the bot to access your Slack
 
+After that, the flows.network will direct you to configure the SaaS integration required by your flow.
+
 Next, you will tell the bot which Slack channel you want your alert messages to be sent to.
 
 *slack_channel
@@ -46,20 +48,15 @@ The Slack channel where you want to deploy the bot. Case sensitive.
 ![image](https://github.com/flows-network/hackernews-alert/assets/37167103/85fb6038-7632-4aa0-bf74-3a8f3ab79fd2)
 
 
-### Configure SaaS integrations
+Next, let's grant flows.network to access the Slack channel you just input.
 
-After that, the flows.network will direct you to configure the SaaS integration required by your flow.
-
-
-Here we can see, we need to configue one SaaS integration: Slack.
-
-Click the "Connect/+ Add new authentication" button to authenticate your Slack account. You'll be redirected to a new page where you must grant [flows.network](https://flows.network/) permission to install the `flows-network` bot on your workspace. This workspace is the one you entered into the environment variables above.
+Click the "Connect/+ Add new authentication" button to authenticate your Slack account. You'll be redirected to a new page where you must grant [flows.network](https://flows.network/) permission to install the `flows-network` bot on your workspace. This workspace is the one you entered into the `slack_workspace` above.
 
 > If you have authenticated the workspace before,you can see the purple Connect button turns gray Connected button. Just ingore this step and click Check button.
 
 After that, click the Check button to see your flow details. As soon as the flow function's status becomes `ready` and the flow's status became `running`, the Hackernews alert App goes live. You will get a salck message at the 50th minute of every hour !
+
 ![image](https://github.com/flows-network/hackernews-alert/assets/37167103/f0a2928f-a918-443b-a58f-aae348710490)
 
-> [flows.network](https://flows.network/) is still in its early stages. We would love to hear your feedback!
 
 
