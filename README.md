@@ -24,7 +24,7 @@
 
 You will need to sign into [flows.network](https://flows.network/) from your GitHub account. It is free.
 
-### 1 Create a bot from a template
+### 1 Load the Hacker News Alert template
 
 [**Just click here**](https://flows.network/flow/createByTemplate/hackernews-alert)
 
