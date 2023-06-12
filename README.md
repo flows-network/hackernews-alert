@@ -1,4 +1,4 @@
-# <p align="center">HackerNews Alert</p>
+# <p align="center">Hacker News Alert</p>
 <p align="center">
   <a href="https://discord.gg/ccZn9ZMfFf">
     <img src="https://img.shields.io/badge/chat-Discord-7289DA?logo=discord" alt="flows.network Discord">
@@ -28,7 +28,7 @@ You will need to sign into [flows.network](https://flows.network/) from your Git
 
 [**Just click here**](https://flows.network/flow/createByTemplate/hackernews-alert)
 
-Set the `KEYWORD` variable. It is the word you want to monitor on Hackernews and get alert of. For each bot you can only set one keyword. For more keywords, you can set more a bot for each of them.
+Set the `KEYWORD` variable. It is the word you want to monitor on Hacker News and get alert of. For each bot you can only set one keyword. For more keywords, you can set more a bot for each of them.
 ![image](https://github.com/flows-network/hackernews-alert/assets/37167103/6faed67d-e596-48fb-820c-eff56709859e)
 
 Click on the **Create and Deploy** button.
@@ -54,7 +54,7 @@ Click the "Connect/+ Add new authentication" button to authenticate your Slack a
 
 > If you have authenticated the workspace before,you can see the purple Connect button turns gray Connected button. Just ingore this step and click Check button.
 
-After that, click the Check button to see your flow details. As soon as the flow function's status becomes `ready` and the flow's status became `running`, the Hackernews alert App goes live. You will get a salck message at the 50th minute of every hour !
+After that, click the Check button to see your flow details. As soon as the flow function's status becomes `ready` and the flow's status became `running`, the Hacker News alert App goes live. You will get a salck message at the 50th minute of every hour !
 
 ![image](https://github.com/flows-network/hackernews-alert/assets/37167103/f0a2928f-a918-443b-a58f-aae348710490)
 
