@@ -11,7 +11,7 @@
   </a>
 </p>
 
-[Deploy this function on flows.network](#deploy-the-hackernews-alert-app), and you will reveice HackerNews post alerts per hour based on your interests (key words you set). 
+[Deploy this function on flows.network](#deploy-the-hackernews-alert-app), and you will reveice HackerNews post alerts each hour based on a keyword you set. 
 
 <img width="658" alt="image" src="https://user-images.githubusercontent.com/45785633/227419393-d7a438f1-51c9-42bc-bb9a-bac1cd3e5581.png">
 
@@ -28,7 +28,7 @@ You will need to sign into [flows.network](https://flows.network/) from your Git
 
 [**Just click here**](https://flows.network/flow/createByTemplate/hackernews-alert)
 
-Set the `key word` variable. It is the word you want to monitor on Hackernews and get alert of. For each bot you can only set one keyword.
+Set the `KEYWORD` variable. It is the word you want to monitor on Hackernews and get alert of. For each bot you can only set one keyword. For more keywords, you can set more a bot for each of them.
 ![image](https://github.com/flows-network/hackernews-alert/assets/37167103/6faed67d-e596-48fb-820c-eff56709859e)
 
 Click on the **Create and Deploy** button.
@@ -39,10 +39,10 @@ After that, the flows.network will direct you to configure the SaaS integration 
 
 Next, you will tell the bot which Slack channel you want your alert messages to be sent to.
 
-*slack_channel
+* `slack_channel`
 Slack organization of the Slack channel where you want to deploy the bot. Case sensitive.
 
-*slack_workspace
+* `slack_workspace`
 The Slack channel where you want to deploy the bot. Case sensitive.
 
 ![image](https://github.com/flows-network/hackernews-alert/assets/37167103/85fb6038-7632-4aa0-bf74-3a8f3ab79fd2)
