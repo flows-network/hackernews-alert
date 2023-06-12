@@ -6,7 +6,7 @@
   <a href="https://twitter.com/flows_network">
     <img src="https://img.shields.io/badge/Twitter-1DA1F2?logo=twitter&amp;logoColor=white" alt="flows.network Twitter">
   </a>
-   <a href="https://flows.network/flow/new">
+   <a href="https://flows.network/flow/createByTemplate/hackernews-alert">
     <img src="https://img.shields.io/website?up_message=deploy&url=https%3A%2F%2Fflows.network%2Fflow%2Fnew" alt="Create a flow">
   </a>
 </p>
@@ -17,7 +17,7 @@
 
 ## Deploy your own HN alert bot in 2 simple steps
 
-1. Create a bot from [this template](https://flows.network/flow/createByTemplate/hackernews-alert)
+1. Load [the Hacker News alert template](https://flows.network/flow/createByTemplate/hackernews-alert)
 2. Configure and authorize your Slack access
 
 ### 0 Prerequisites
